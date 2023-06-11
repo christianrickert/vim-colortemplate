@@ -6,7 +6,7 @@
 hi clear
 let g:colors_name = 'test72'
 
-let s:t_Co = exists('&t_Co') && !has('gui_running') ? (&t_Co ?? 0) : -1
+let s:t_Co = has('gui_running') ? -1 : (&t_Co ?? 0)
 
 if (has('termguicolors') && &termguicolors) || has('gui_running')
   let g:terminal_ansi_colors = ['#000000', '#ffffff', '#000000', '#ffffff', '#000000', '#ffffff', '#000000', '#ffffff', '#000000', '#ffffff', '#000000', '#ffffff', '#000000', '#ffffff', '#000000', '#ffffff']
@@ -18,4 +18,4 @@ else
   hi Normal guifg=#000000 guibg=#ffffff gui=NONE cterm=NONE
 endif
 
-" vim: et ts=2 sw=2
+" vim: et ts=8 sw=2 sts=2

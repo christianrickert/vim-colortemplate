@@ -8,7 +8,7 @@ if exists("b:did_ftplugin")
 endif
 let b:did_ftplugin = 1
 
-let s:undo_ftplugin = "setlocal commentstring< omnifunc< | unlet! b:colortemplate_outdir"
+let s:undo_ftplugin = "setl cms< com< fo< ofu< | unlet! b:colortemplate_outdir"
 let b:undo_ftplugin = (exists('b:undo_ftplugin') ? b:undo_ftplugin .. '|' : '') .. s:undo_ftplugin
 
 let b:colortemplate_head = escape(expand('%:p:h'), ' ')
@@ -17,14 +17,17 @@ if b:colortemplate_outdir =~? '\m\%(color\)\=templates\=$'
   let b:colortemplate_outdir = fnamemodify(b:colortemplate_outdir, ':h')
 endif
 if get(g:, 'colortemplate_rtp', 1)
-  execute 'set runtimepath^=' .. b:colortemplate_outdir
+  execute 'set runtimepath^=' .. fnameescape(b:colortemplate_outdir)
 endif
 
 if (has('balloon_eval') || has('balloon_eval_term')) && !has('nvim')
   setlocal balloonexpr=colortemplate#syn#balloonexpr()
   let s:undo_ftplugin ..= "| setlocal balloonexpr<"
 endif
+
+setlocal comments=:;
 setlocal commentstring=;%s
+setlocal formatoptions=cjloqr1
 setlocal omnifunc=syntaxcomplete#Complete
 
 if !get(g:, 'colortemplate_no_mappings', get(g:, 'no_plugin_maps', 0))

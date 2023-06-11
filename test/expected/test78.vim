@@ -8,7 +8,7 @@ set background=dark
 hi clear
 let g:colors_name = 'test78'
 
-let s:t_Co = exists('&t_Co') && !has('gui_running') ? (&t_Co ?? 0) : -1
+let s:t_Co = has('gui_running') ? -1 : (&t_Co ?? 0)
 
 if s:t_Co >= 256
   hi Normal ctermfg=16 ctermbg=NONE cterm=NONE
@@ -16,4 +16,4 @@ if s:t_Co >= 256
   finish
 endif
 
-" vim: et ts=2 sw=2
+" vim: et ts=8 sw=2 sts=2
